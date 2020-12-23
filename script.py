@@ -1,9 +1,21 @@
 import pandas as pd
 
-path = 'tic_educacao_urbanas_professores_2019_total.xlsx'
+path = 'uso_de_reds.xlsx'
+sh_n = 'E3A'
 
-xcell = pd.ExcelFile(path)
+xcel = pd.read_excel(
+     path,
+     engine='openpyxl',
+     sheet_name=sh_n,
+     header=[1, 2],
+     index_col=[0, 1]
+)
+xcel = xcel.replace('-', 0)
 
-sheets = xcell.sheet_names
+with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
+     print(xcel)
 
-print(sheets)
+xcel.to_csv('testando.csv')
+# sheets =
+#
+# print(sheets)
